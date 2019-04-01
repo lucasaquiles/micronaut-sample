@@ -31,4 +31,6 @@ public class Expense {
     private Boolean fixed;
     private Date dateCreated;
     private Date paymentLimitDate;
+
+
 }
