@@ -1,15 +1,18 @@
 Simple poc API using micronaut with java to register expenses
 
-* java 8
-* h2
-* lombok
+* Java 8
+* H2
+* Lombok
 
-```GET  http://localhost:8080/task/```
+```GET  http://localhost:8080/expense/```
 
-```GET  http://localhost:8080/task/{id}```
+```GET  http://localhost:8080/expense/{id}```
 
-```POST  http://localhost:8080/task --data ""```
+```POST  http://localhost:8080/expense --data ""```
 
-```DELETE  http://localhost:8080/task/{id}```
+```DELETE  http://localhost:8080/expense/{id}```
 
-```PUT  http://localhost:8080/task/{id}```
+```PUT  http://localhost:8080/expense/{id}```
+
+
+curl -s -X POST -H 'Accept: application/json' -H 'Content-Type: application/json' --data '{"username":"sherlock","password":"password"}' http://localhost:8080/login

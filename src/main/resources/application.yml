@@ -1,6 +1,11 @@
 micronaut:
     application:
         name: poc-micronaut
+    security:
+        enabled: false
+        endpoints:
+            login:
+                enabled: true
 
 datasources:
     default:
