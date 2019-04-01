@@ -14,5 +14,3 @@ Simple poc API using micronaut with java to register expenses
 
 ```PUT  http://localhost:8080/expense/{id}```
 
-
-curl -s -X POST -H 'Accept: application/json' -H 'Content-Type: application/json' --data '{"username":"sherlock","password":"password"}' http://localhost:8080/login
