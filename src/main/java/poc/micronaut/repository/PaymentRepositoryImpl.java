@@ -7,6 +7,7 @@ import poc.micronaut.domain.Payment;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 import java.util.Optional;
@@ -33,6 +34,14 @@ public class PaymentRepositoryImpl implements PaymentRepository {
     @Transactional(readOnly = true)
     public Optional<Payment> findById(@NotNull Long id) {
         return Optional.ofNullable(entityManager.find(Payment.class, id));
+    }
+
+    @Override
+    public Optional<Payment> findByExpense(@NotNull Expense expense) {
+        Query query = entityManager.createQuery("from Payment where expense = :expense");
+        query.setParameter("expense", expense);
+        Payment singleResult = (Payment) query.getSingleResult();
+        return Optional.ofNullable(singleResult);
     }
 
     @Override
