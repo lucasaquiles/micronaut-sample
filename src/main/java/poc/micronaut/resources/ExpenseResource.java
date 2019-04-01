@@ -67,6 +67,15 @@ public class ExpenseResource {
         return expense;
     }
 
+    @Get(value = "/{id}/payment", consumes = MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Payment getPayment(@Parameter Long id) {
+
+        Payment payment = paymentRepository.findById(id).orElseThrow(()-> new EntityNotFoundException());
+
+        return payment;
+    }
+
     @Put(value = "/{id}", consumes = MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Expense update(Long id, @Body String text) {

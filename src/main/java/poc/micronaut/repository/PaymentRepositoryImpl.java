@@ -2,6 +2,7 @@ package poc.micronaut.repository;
 
 import io.micronaut.runtime.ApplicationConfiguration;
 import io.micronaut.spring.tx.annotation.Transactional;
+import poc.micronaut.domain.Expense;
 import poc.micronaut.domain.Payment;
 
 import javax.persistence.EntityManager;
@@ -31,7 +32,7 @@ public class PaymentRepositoryImpl implements PaymentRepository {
     @Override
     @Transactional(readOnly = true)
     public Optional<Payment> findById(@NotNull Long id) {
-        return Optional.empty();
+        return Optional.ofNullable(entityManager.find(Payment.class, id));
     }
 
     @Override
