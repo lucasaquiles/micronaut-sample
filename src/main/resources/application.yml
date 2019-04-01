@@ -2,7 +2,7 @@ micronaut:
     application:
         name: poc-micronaut
     security:
-        enabled: true
+        enabled: false
         endpoints:
             login:
                 enabled: true

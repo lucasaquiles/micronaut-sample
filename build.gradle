@@ -27,7 +27,7 @@ dependencies {
 
     compile "io.micronaut.configuration:micronaut-hibernate-jpa"
     compile "io.micronaut.configuration:micronaut-jdbc-hikari"
-
+    compile "com.fasterxml.jackson.module:jackson-module-parameter-names:2.9.0"
     compile "io.micronaut:micronaut-security-jwt"
 
     runtime "com.h2database:h2"

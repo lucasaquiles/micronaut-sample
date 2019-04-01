@@ -1,5 +1,6 @@
 package poc.micronaut.resources;
 
+import io.micronaut.context.annotation.Parameter;
 import io.micronaut.http.MediaType;
 import io.micronaut.http.annotation.Body;
 import io.micronaut.http.annotation.Controller;
@@ -8,9 +9,14 @@ import io.micronaut.http.annotation.Post;
 import io.micronaut.http.annotation.Produces;
 import io.micronaut.http.annotation.Put;
 import io.micronaut.security.annotation.Secured;
+import io.micronaut.spring.tx.annotation.Transactional;
 import poc.micronaut.domain.Expense;
+import poc.micronaut.domain.Payment;
 import poc.micronaut.repository.ExpenseRepository;
+import poc.micronaut.repository.PaymentRepository;
 
+import javax.inject.Inject;
+import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,27 +25,44 @@ import java.util.List;
 @Controller("/expense")
 public class ExpenseController {
 
-    protected final ExpenseRepository repository;
+    @Inject
+    private ExpenseRepository repository;
 
-    public ExpenseController(ExpenseRepository repository) {
-        this.repository = repository;
+    @Inject
+    private PaymentRepository paymentRepository;
+
+    public ExpenseController() {
+
     }
 
     @Get("/")
     @Produces(MediaType.APPLICATION_JSON)
     public List<Expense> expenses() {
-        return new ArrayList<>();
+        return repository.listAll();
     }
 
     @Get("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Expense expense(Long id) {
-        return null;
+        return repository.findById(id).orElseThrow(()-> new EntityNotFoundException());
     }
 
     @Post(value = "/", consumes = MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Expense add(@Body Expense expense) {
+
+        return repository.save(expense);
+    }
+
+    @Transactional
+    @Post(value = "/{id}/", consumes = MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Expense addPayment(@Parameter Long id, @Body Payment payment) {
+
+        Expense expense = repository.findById(id).orElseThrow(()-> new EntityNotFoundException());
+
+        payment.setExpense(expense);
+        paymentRepository.save(payment);
 
         return expense;
     }
