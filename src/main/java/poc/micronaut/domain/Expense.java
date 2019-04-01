@@ -37,6 +37,5 @@ public class Expense {
     @Temporal(TemporalType.TIMESTAMP)
     private Date dateCreated;
 
-    @Temporal(TemporalType.DATE)
-    private Date paymentLimitDate;
+    private int paymentLimitDay;
 }
