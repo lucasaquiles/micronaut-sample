@@ -23,7 +23,7 @@ import java.util.List;
 
 @Secured("isAuthenticated()")
 @Controller("/expense")
-public class ExpenseController {
+public class ExpenseResource {
 
     @Inject
     private ExpenseRepository repository;
@@ -31,7 +31,7 @@ public class ExpenseController {
     @Inject
     private PaymentRepository paymentRepository;
 
-    public ExpenseController() {
+    public ExpenseResource() {
 
     }
 
@@ -55,7 +55,7 @@ public class ExpenseController {
     }
 
     @Transactional
-    @Post(value = "/{id}/", consumes = MediaType.APPLICATION_JSON)
+    @Post(value = "/{id}/payment", consumes = MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Expense addPayment(@Parameter Long id, @Body Payment payment) {
 
