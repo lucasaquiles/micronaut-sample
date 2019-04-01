@@ -1,5 +1,16 @@
-```GET  http://localhost:8080/task/```
-```GET  http://localhost:8080/task/{id}```
-```POST  http://localhost:8080/task --data ""```
-```DELETE  http://localhost:8080/task/{id}```
-```PUT  http://localhost:8080/task/{id}```
+Simple poc API using micronaut with java to register expenses
+
+* Java 8
+* H2
+* Lombok
+
+```GET  http://localhost:8080/expense/```
+
+```GET  http://localhost:8080/expense/{id}```
+
+```POST  http://localhost:8080/expense --data ""```
+
+```DELETE  http://localhost:8080/expense/{id}```
+
+```PUT  http://localhost:8080/expense/{id}```
+

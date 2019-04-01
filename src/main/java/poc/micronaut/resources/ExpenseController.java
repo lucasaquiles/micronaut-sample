@@ -7,6 +7,7 @@ import io.micronaut.http.annotation.Get;
 import io.micronaut.http.annotation.Post;
 import io.micronaut.http.annotation.Produces;
 import io.micronaut.http.annotation.Put;
+import io.micronaut.security.annotation.Secured;
 import poc.micronaut.domain.Expense;
 import poc.micronaut.repository.ExpenseRepository;
 
@@ -14,7 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-@Controller("/task")
+@Secured("isAuthenticated()")
+@Controller("/expense")
 public class ExpenseController {
 
     protected final ExpenseRepository repository;
