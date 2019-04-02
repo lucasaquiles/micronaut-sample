@@ -10,6 +10,11 @@ import io.micronaut.http.annotation.Produces;
 import io.micronaut.http.annotation.Put;
 import io.micronaut.security.annotation.Secured;
 import io.micronaut.spring.tx.annotation.Transactional;
+import io.micronaut.validation.Validated;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import poc.micronaut.domain.Expense;
 import poc.micronaut.domain.Payment;
 import poc.micronaut.repository.ExpenseRepository;
@@ -23,6 +28,7 @@ import java.util.List;
 
 @Secured("isAuthenticated()")
 @Controller("/expense")
+@Validated
 public class ExpenseResource {
 
     @Inject
@@ -31,9 +37,7 @@ public class ExpenseResource {
     @Inject
     private PaymentRepository paymentRepository;
 
-    public ExpenseResource() {
-
-    }
+    public ExpenseResource() {}
 
     @Get("/")
     @Produces(MediaType.APPLICATION_JSON)
