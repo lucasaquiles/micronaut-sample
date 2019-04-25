@@ -14,3 +14,6 @@ Simple poc API using micronaut with java to register expenses
 
 ```PUT  http://localhost:8080/expense/{id}```
 
+run with
+```./gradlew run```
+

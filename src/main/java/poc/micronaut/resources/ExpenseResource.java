@@ -39,7 +39,7 @@ public class ExpenseResource {
 
     public ExpenseResource() {}
 
-    @Get("/")
+
     @Produces(MediaType.APPLICATION_JSON)
     public List<Expense> expenses() {
         return repository.listAll();
